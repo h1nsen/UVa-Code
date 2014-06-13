@@ -29,7 +29,6 @@ void artic_points(int i,int ct)
 			artic_points(x,ct);
 			if(dfs_low[x] >= dfs_num[i] && parent[i] != -1)
 			{
-			//	++total_artic;
 				artic[i]=1;
 			}
 			if(parent[i]==-1)
@@ -49,7 +48,6 @@ void artic_points(int i,int ct)
 }
 int main()
 {
-//	ios_base::sync_with_stdio(false);
 	int n,cur_root=-1;
 	scanf("%d",&n);
 	string line;
@@ -69,20 +67,18 @@ int main()
 			if(line == "0")break;
 
 		
-		stringstream ss(line);
-		int nxt,part;
+			stringstream ss(line);
+			int nxt,part;
 		
-		ss >> nxt;
-		if(cur_root == -1)
-			cur_root = nxt;
-		while(ss >> part)
-		{
-			adj[nxt].push_back(part);
-			adj[part].push_back(nxt);
+			ss >> nxt;
+			if(cur_root == -1)
+				cur_root = nxt;
+			while(ss >> part)
+			{
+				adj[nxt].push_back(part);
+				adj[part].push_back(nxt);
+			}
 		}
-		}
-		//artic_points(cur_root,0);
-		int p = 0;
 		artic_points(cur_root,0);
 		cout << accumulate(artic,artic + 100,0) << "\n";
 	}
